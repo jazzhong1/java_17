@@ -8,7 +8,7 @@ public class ScoreDTO {
 	private int kor;
 	private int eng;
 	private int math;
-	private int sum;
+	private int total;
 	private double avg;
 	
 	
@@ -48,11 +48,11 @@ public class ScoreDTO {
 	public void setMath(int math) {
 		this.math = math;
 	}
-	public int getSum() {
-		return sum;
+	public int getTotal() {
+		return total;
 	}
-	public void setSum(int sum) {
-		this.sum = sum;
+	public void setTotal(int sum) {
+		this.total = sum;
 	}
 	public double getAvg() {
 		return avg;
