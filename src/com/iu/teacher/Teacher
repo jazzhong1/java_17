@@ -1,0 +1,9 @@
+create table teacher(
+	id varchar2(400),
+	name varchar2(400),
+	age number(3),
+	mail varchar2(400),
+	birdaty date,
+	job varchar2(20),
+	sal number(3)
+);
