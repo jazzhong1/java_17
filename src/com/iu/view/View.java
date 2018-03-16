@@ -1,4 +1,4 @@
-package com.iu.score;
+package com.iu.view;
 
 import java.util.*;
 

@@ -3,11 +3,73 @@ package com.iu.student;
 import java.sql.*;
 import java.util.*;
 
+import com.iu.member.*;
+import com.iu.teacher.*;
 import com.iu.util.*;
 
-public class StudentDAO {
+public class StudentDAO implements MemberDAO{
 
-	public ArrayList<StudentDTO> select() throws SQLException {
+	@Override
+	public int insert(MemberDTO memberDTO) throws Exception {
+		Connection con = DBConnector.getConnect();
+
+		String sql = "insert into student values(?,?,?,?,?,?)";
+
+		PreparedStatement st = con.prepareStatement(sql);
+
+		st.setString(1, memberDTO.getId());
+		st.setString(2, memberDTO.getName());
+		st.setInt(3, memberDTO.getAge());
+		st.setString(4, memberDTO.getMail());
+		st.setString(5, memberDTO.getBirday());
+		st.setString(6, memberDTO.getJab());
+
+		int num = st.executeUpdate();
+		return num;
+	}
+
+	@Override
+	public int update(MemberDTO memberDTO) throws Exception {
+		//이름, 이메일, 나이 생일
+		
+		Connection con=DBConnector.getConnect();
+		
+		String sql="update student set name=?, mail=?, age=?, briday=? where id=?";
+		
+		PreparedStatement st= con.prepareStatement(sql);
+		
+		st.setString(1, memberDTO.getName());
+		st.setString(2, memberDTO.getMail());
+		st.setInt(3, memberDTO.getAge());
+		st.setString(4, memberDTO.getBirday());
+		st.setString(5, memberDTO.getId());
+		
+		int num=st.executeUpdate();
+		
+		
+		
+		
+		return num;
+	}
+
+	@Override
+	public int delete(String id) throws Exception {
+		
+		Connection con=DBConnector.getConnect();
+
+		String sql="delete student where id=?";
+		
+		PreparedStatement st=con.prepareStatement(sql);
+		
+		st.setString(1, id);
+		
+		int num=st.executeUpdate();
+		
+		return num;
+	}
+
+	@Override
+	public List<MemberDTO> selectList() throws Exception {
 		Connection con = DBConnector.getConnect();
 
 		String sql = "select * from student";
@@ -15,38 +77,48 @@ public class StudentDAO {
 
 		ResultSet rs = st.executeQuery();
 
-		ArrayList<StudentDTO> arrayList = new ArrayList<>();
+		List<MemberDTO> arrayList = new ArrayList<>();
 		while (rs.next()) {
 			StudentDTO dto = new StudentDTO();
 			dto.setId(rs.getString("id"));
 			dto.setName(rs.getString("name"));
 			dto.setAge(rs.getInt("age"));
 			dto.setMail(rs.getString("mail"));
-			dto.setBirdaty(rs.getString("birdaty"));
+			dto.setBirday(rs.getString("birday"));
 			dto.setJab(rs.getString("job"));
 			arrayList.add(dto);
 		}
 		DBConnector.disConnect(rs, st, con);
+		
 		return arrayList;
-
 	}
 
-	public int insert(StudentDTO dto) throws Exception {
+	@Override
+	public MemberDTO selectOne(String id) throws Exception {
+		
 		Connection con = DBConnector.getConnect();
 
-		String sql = "insert into student values(?,?,?,?,?,?)";
-
+		String sql = "select * from student where id=?";
 		PreparedStatement st = con.prepareStatement(sql);
-
-		st.setString(1, dto.getId());
-		st.setString(2, dto.getName());
-		st.setInt(3, dto.getAge());
-		st.setString(4, dto.getMail());
-		st.setString(5, dto.getBirdaty());
-		st.setString(6, dto.getJab());
+		st.setString(1,id);
+		st.executeUpdate();
 		
-		int num=st.executeUpdate();
-		return num;
+		ResultSet rs = st.executeQuery();
+	
+		StudentDTO dto=new StudentDTO();
+		
+			rs.next();
+			
+			dto.setId(rs.getString("id"));
+			dto.setName(rs.getString("name"));
+			dto.setAge(rs.getInt("age"));
+			dto.setMail(rs.getString("mail"));
+			dto.setBirday(rs.getString("birday"));
+			dto.setJab(rs.getString("job"));
+		
+		return dto;
 	}
+
+	
 
 }

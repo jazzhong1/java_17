@@ -7,7 +7,7 @@ public abstract class MemberDTO {
 	private String name;
 	private int age;
 	private String mail;
-	private String birdaty;
+	private String birday;
 	private String jab;
 	
 	public String getName() {
@@ -28,11 +28,11 @@ public abstract class MemberDTO {
 	public void setMail(String mail) {
 		this.mail = mail;
 	}
-	public String getBirdaty() {
-		return birdaty;
+	public String getBirday() {
+		return birday;
 	}
-	public void setBirdaty(String date) {
-		this.birdaty = date;
+	public void setBirday(String date) {
+		this.birday = date;
 	}
 	public String getJab() {
 		return jab;

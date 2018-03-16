@@ -31,10 +31,7 @@ public class ScoreInput {
 		return dto;
 	}
 	
-	private int number(){
-		
-		return 0;
-	}
+	
 	
 	
 public int delete(){

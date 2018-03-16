@@ -3,6 +3,7 @@ package com.iu.score;
 import java.util.*;
 
 import com.iu.input.*;
+import com.iu.view.View;
 
 public class ScoreController {
 

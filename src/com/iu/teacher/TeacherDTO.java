@@ -6,7 +6,6 @@ public class TeacherDTO extends MemberDTO{
 	
 	private int sal;
 	
-
 	public int getSal() {
 		return sal;
 	}
