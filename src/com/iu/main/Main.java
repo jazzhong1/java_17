@@ -3,21 +3,21 @@ package com.iu.main;
 import java.util.ArrayList;
 
 import com.iu.member.*;
-import com.iu.student.StudentDAO;
-import com.iu.student.StudentDTO;
+import com.iu.student.*;
 import com.iu.teacher.*;
 
 public class Main {
 
 	public static void main(String[] args) throws Exception  {
+		
+		
+		//맨앞에 있는 컨트롤러를 프론트컨트롤러 
 	
 //		new ScoreController().start();
 		
-		TeacherDAO dao=new TeacherDAO();
+//		new StudentController().start();
 		
-		TeacherDTO md=(TeacherDTO)dao.selectOne("qwev");
-		
-		System.out.println(md.getSal());
+		new TeacherController().start();
 		
 	}
 }

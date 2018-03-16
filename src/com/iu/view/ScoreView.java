@@ -4,7 +4,7 @@ import java.util.*;
 
 import com.iu.score.*;
 
-public class View {
+public class ScoreView {
 	
 	public void view(ArrayList<ScoreDTO> arrayList){
 		

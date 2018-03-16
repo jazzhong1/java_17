@@ -29,6 +29,8 @@ public class TeacherDAO implements MemberDAO {
 		
 		int result=st.executeUpdate();
 		
+		DBConnector.disConnect(st, con);
+		
 		return result;
 	}
 
@@ -37,7 +39,7 @@ public class TeacherDAO implements MemberDAO {
 
 		Connection con=DBConnector.getConnect();
 		
-		String sql="update teacher set name=?, mail=?, age=?, briday=? where id=?";
+		String sql="update teacher set name=?, mail=?, age=?, briday=?, sal=? where id=?";
 		
 		PreparedStatement st= con.prepareStatement(sql);
 		
@@ -46,9 +48,12 @@ public class TeacherDAO implements MemberDAO {
 		st.setInt(3, memberDTO.getAge());
 		st.setString(4, memberDTO.getBirday());
 		st.setString(5, memberDTO.getId());
+		st.setInt(6, ((TeacherDTO)memberDTO).getSal());
+
 		
 		int num=st.executeUpdate();
 		
+		DBConnector.disConnect(st, con);
 		return num;
 	}
 
@@ -65,6 +70,8 @@ public class TeacherDAO implements MemberDAO {
 		
 		int num=st.executeUpdate();
 		
+		DBConnector.disConnect(st, con);
+
 		return num;
 	}
 
@@ -78,9 +85,10 @@ public class TeacherDAO implements MemberDAO {
 
 		ResultSet rs = st.executeQuery();
 
-		List<MemberDTO> arrayList = new ArrayList<>();
+		List<MemberDTO> arrayList = new ArrayList<>();		//리턴타입을 맞춘다.
 		while (rs.next()) {
 			TeacherDTO dto = new TeacherDTO();
+			
 			dto.setId(rs.getString("id"));
 			dto.setName(rs.getString("name"));
 			dto.setAge(rs.getInt("age"));
@@ -120,6 +128,7 @@ public class TeacherDAO implements MemberDAO {
 			mdto=dto;
 		}
 		
+		DBConnector.disConnect(rs, st, con);
 		return mdto;
 	}
 

@@ -25,6 +25,8 @@ public class StudentDAO implements MemberDAO{
 		st.setString(6, memberDTO.getJab());
 
 		int num = st.executeUpdate();
+		
+		DBConnector.disConnect(st, con);
 		return num;
 	}
 
@@ -48,7 +50,8 @@ public class StudentDAO implements MemberDAO{
 		
 		
 		
-		
+		DBConnector.disConnect(st, con);
+
 		return num;
 	}
 
@@ -116,7 +119,27 @@ public class StudentDAO implements MemberDAO{
 			dto.setBirday(rs.getString("birday"));
 			dto.setJab(rs.getString("job"));
 		
+			
+			DBConnector.disConnect(rs, st, con);
 		return dto;
+	}
+	
+	public boolean getId(String id) throws Exception{
+		
+		Connection con=DBConnector.getConnect();
+		
+		String sql="select id from student where id=?";
+		
+		PreparedStatement st=con.prepareStatement(sql);
+		
+		st.setString(1, id);
+		
+		ResultSet rs=st.executeQuery();
+		
+		boolean result=rs.next();
+		
+		DBConnector.disConnect(rs, st, con);
+		return result;
 	}
 
 	

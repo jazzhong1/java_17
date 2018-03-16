@@ -3,20 +3,20 @@ package com.iu.score;
 import java.util.*;
 
 import com.iu.input.*;
-import com.iu.view.View;
+import com.iu.view.ScoreView;
 
 public class ScoreController {
 
 	private Scanner sc;
 	private ScoreInput input;
-	private View view;
+	private ScoreView view;
 
 	private ScoreService scoreService;
 
 	public ScoreController() {
 		sc = new Scanner(System.in);
 		input = new ScoreInput();
-		view = new View();
+		view = new ScoreView();
 		scoreService = new ScoreService();
 	}
 
