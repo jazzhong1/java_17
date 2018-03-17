@@ -54,6 +54,7 @@ public class MemberInput {
 	
 		
 	public MemberDTO update(MemberDTO memberDTO){
+		
 		String id=this.search();
 		memberDTO.setId(id);
 		System.out.println("name:");

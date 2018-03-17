@@ -4,6 +4,7 @@ import java.util.*;
 
 import com.iu.input.*;
 import com.iu.member.*;
+import com.iu.teacher.TeacherDTO;
 import com.iu.view.*;
 
 public class StudentController {
@@ -28,7 +29,7 @@ public class StudentController {
 
 			if (select == 1) {
 				MemberDTO dto=new StudentDTO();
-				dto=(StudentDTO) input.insert(dto);
+				dto=input.insert(dto);
 				String message=service.insert(dto);
 				view.view(message);
 			} 
@@ -45,13 +46,19 @@ public class StudentController {
 			
 			else if (select == 4) {
 				String id=input.search();
-				StudentDTO dto=(StudentDTO)service.selectOne(id);
-				view.view(dto);
+				MemberDTO dto=service.selectOne(id);	
+				
+				if(dto!=null){
+					view.view(dto);
+				}
+				else{
+					view.view("search fail");
+				}
 			}
 			
 			else if (select == 5) {
 				MemberDTO dto=new StudentDTO();
-				dto=(StudentDTO) input.update(dto);
+				dto=input.update(dto);
 				String message=service.update(dto);
 				view.view(message);
 			}

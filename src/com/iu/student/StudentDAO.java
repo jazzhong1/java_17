@@ -36,7 +36,7 @@ public class StudentDAO implements MemberDAO{
 		
 		Connection con=DBConnector.getConnect();
 		
-		String sql="update student set name=?, mail=?, age=?, briday=? where id=?";
+		String sql="update student set name=?, mail=?, age=?, birday=? where id=?";
 		
 		PreparedStatement st= con.prepareStatement(sql);
 		

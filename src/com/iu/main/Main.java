@@ -15,9 +15,9 @@ public class Main {
 	
 //		new ScoreController().start();
 		
-//		new StudentController().start();
+		new StudentController().start();
 		
-		new TeacherController().start();
+//		new TeacherController().start();
 		
 	}
 }

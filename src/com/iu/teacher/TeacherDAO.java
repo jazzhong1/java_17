@@ -39,7 +39,7 @@ public class TeacherDAO implements MemberDAO {
 
 		Connection con=DBConnector.getConnect();
 		
-		String sql="update teacher set name=?, mail=?, age=?, briday=?, sal=? where id=?";
+		String sql="update teacher set name=?, mail=?, age=?, birday=?, sal=? where id=?";
 		
 		PreparedStatement st= con.prepareStatement(sql);
 		
@@ -47,8 +47,8 @@ public class TeacherDAO implements MemberDAO {
 		st.setString(2, memberDTO.getMail());
 		st.setInt(3, memberDTO.getAge());
 		st.setString(4, memberDTO.getBirday());
-		st.setString(5, memberDTO.getId());
-		st.setInt(6, ((TeacherDTO)memberDTO).getSal());
+		st.setInt(5, ((TeacherDTO)memberDTO).getSal());
+		st.setString(6, memberDTO.getId());
 
 		
 		int num=st.executeUpdate();

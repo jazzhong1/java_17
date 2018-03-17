@@ -78,7 +78,7 @@ public class StudentService implements MemberService {
 	@Override
 	public MemberDTO selectOne(String id) throws Exception {
 
-		StudentDTO dto = (StudentDTO) dao.selectOne(id);
+		MemberDTO dto = (StudentDTO) dao.selectOne(id);
 
 		String message = "select fail";
 		if (dto != null) {
